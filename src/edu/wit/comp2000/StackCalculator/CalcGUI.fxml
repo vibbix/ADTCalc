@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="359.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wit.comp2000.StackCalculator.CalcGUIController">
+   <children>
+      <Button fx:id="seven" layoutX="20.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="7" />
+      <Button fx:id="eight" layoutX="102.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="8" />
+      <Button fx:id="nine" layoutX="184.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="9" />
+      <Button fx:id="six" layoutX="184.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="6" />
+      <Button fx:id="five" layoutX="102.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="5" />
+      <Button fx:id="two" layoutX="102.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="2" />
+      <Button fx:id="four" layoutX="20.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="4" />
+      <Button fx:id="one" layoutX="20.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="1" />
+      <Button fx:id="three" layoutX="184.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="3" />
+      <TextField fx:id="display" editable="false" layoutX="19.0" layoutY="14.0" prefHeight="55.0" prefWidth="319.0" />
+      <Button fx:id="quit" layoutX="184.0" layoutY="87.0" mnemonicParsing="false" onAction="#quit" prefHeight="70.0" prefWidth="70.0" text="Q" />
+      <Button fx:id="delete" layoutX="102.0" layoutY="87.0" mnemonicParsing="false" onAction="#delete" prefHeight="70.0" prefWidth="70.0" text="&lt;" />
+      <Button fx:id="clear" layoutX="20.0" layoutY="87.0" mnemonicParsing="false" onAction="#clear" prefHeight="70.0" prefWidth="70.0" text="C" />
+      <Button fx:id="divide" layoutX="267.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="/" />
+      <Button fx:id="add" layoutX="267.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="+" />
+      <Button fx:id="subtract" layoutX="267.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="-" />
+      <Button fx:id="multiply" layoutX="267.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="*" />
+      <Button fx:id="evaluate" layoutX="267.0" layoutY="429.0" mnemonicParsing="false" onAction="#evaluate" prefHeight="70.0" prefWidth="70.0" text="=" />
+      <Button fx:id="rightParen" layoutX="184.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text=")" />
+      <Button fx:id="zero" layoutX="20.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="0" />
+      <Button fx:id="leftParen" layoutX="102.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleExpressionKeyPress" prefHeight="70.0" prefWidth="70.0" text="(" />
+   </children>
+</Pane>
