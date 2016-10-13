@@ -2,6 +2,7 @@ package edu.wit.comp2000.StackCalculator.Tests;
 
 import edu.wit.comp2000.StackCalculator.Calculator;
 import edu.wit.comp2000.StackCalculator.InfixCalculator;
+import edu.wit.comp2000.StackCalculator.JavaScriptCalculator;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,6 +46,12 @@ public class InfixCalculatorTest {
     public void evaluateValidSubexpression(){
         InfixCalculator calc = new InfixCalculator();
         int result = calc.EvaluateSubexpression("5*8 + 1 - 9/3 + 1");
+        Assert.assertEquals(39, result);
+    }
+    @Test
+    public void evaluateValidExpressionJS(){
+        Calculator calc = new JavaScriptCalculator();
+        int result = calc.EvaluateExpression("5*8 + 1 - 9/3 + 1");
         Assert.assertEquals(39, result);
     }
 
