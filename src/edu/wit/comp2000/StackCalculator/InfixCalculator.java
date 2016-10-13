@@ -91,7 +91,7 @@ public class InfixCalculator implements Calculator {
                 currentnumber += token;
                 continue;
             }
-            if (token.contains(OPERATIONS)){
+            if (token.matches("^[(-/]")){
                 if(!currentnumber.equals("")){
                     expr.push(currentnumber);
                     currentnumber = "";
@@ -100,14 +100,15 @@ public class InfixCalculator implements Calculator {
             }
             if(token.equals(")")){
                 String subexpr = "";
+                expr.pop();
                 while(!expr.peek().equals("(")){
                     subexpr = expr.pop() + subexpr;
                 }
                 expr.pop(); //get's rid of '('
-                EvaluateExpression(subexpr);
+                expr.push(Integer.toString(EvaluateSubexpression(subexpr)));
             }
         }
-        return 0;
+        return Integer.parseInt(expr.pop());
     }
 
     /**
@@ -156,8 +157,8 @@ public class InfixCalculator implements Calculator {
         }
         String strippedexpr = expression;
         for(Byte replace: (OPERATIONS+NUMBERS).getBytes(Charset.defaultCharset())){
-
-            strippedexpr = strippedexpr.replace(replace.toString(), "").trim();
+            //Character x = Character.highSurrogate(replace);
+            strippedexpr = strippedexpr.replace(Character.toString((char)((int)replace)), "").trim();
         }
         if(strippedexpr.length() > 0){
             throw new IllegalArgumentException("The following characters are illegal:" + strippedexpr);
@@ -171,31 +172,39 @@ public class InfixCalculator implements Calculator {
     public int EvaluateSubexpression(String expression){
         expression = expression.replace(" ", "");
         int highestprecedence = 0;
-        if(expression.contains("-")){
-            highestprecedence = 1;
+        char searchfor = ' ';
+
+        if(expression.contains("*") || expression.contains("/")){
+
+            if(expression.contains("/") && (expression.indexOf('/') < expression.indexOf('*') ||
+                    (expression.indexOf('/') > 0 && expression.indexOf('*') == -1))){
+                highestprecedence = 3;
+            }
+            if(expression.contains("*") && ((expression.indexOf('*') < expression.indexOf('/')) ||
+                    (expression.indexOf('*') > 0 && expression.indexOf('/') == -1))){
+                highestprecedence=4;
+            }
+            if (highestprecedence == 3)
+            {
+                return EvaluateSubexpression(ReduceSubexpression(expression, "/".charAt(0)));
+            }
+            else if(highestprecedence == 4){
+                return EvaluateSubexpression(ReduceSubexpression(expression, "*".charAt(0)));
+            }
         }
-        if(expression.contains("+")){
+        if(expression.contains("-") && (((expression.indexOf('-') < expression.indexOf('+')) ||
+                (expression.indexOf('-') > 0 && expression.indexOf('+') == -1)))){
+            highestprecedence=1;
+        }
+        if(expression.contains("+") && ((expression.indexOf('+') < expression.indexOf('-')) ||
+                (expression.indexOf('+') > 0 && expression.indexOf('-') == -1))){
             highestprecedence = 2;
         }
-        if(expression.contains("/")){
-            highestprecedence = 3;
-        }
-        if(expression.contains("*")){
-            highestprecedence = 4;
-        }
-
         if(highestprecedence == 1){
             return EvaluateSubexpression(ReduceSubexpression(expression, "-".charAt(0)));
         }
         else if(highestprecedence == 2){
             return EvaluateSubexpression(ReduceSubexpression(expression, "+".charAt(0)));
-        }
-        else if (highestprecedence == 3)
-        {
-            return EvaluateSubexpression(ReduceSubexpression(expression, "/".charAt(0)));
-        }
-        else if(highestprecedence == 4){
-            return EvaluateSubexpression(ReduceSubexpression(expression, "*".charAt(0)));
         }
         return Integer.parseInt(expression);
     }
