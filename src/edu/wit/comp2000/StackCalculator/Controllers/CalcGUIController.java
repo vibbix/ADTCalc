@@ -100,7 +100,9 @@ public class CalcGUIController {
      * Deletes most recently typed character
      */
     public void delete(){
-        setDisplay(getDisplay().substring(0, getDisplay().length() - 1));
+        if(getDisplay().length() >= 1) {
+            setDisplay(getDisplay().substring(0, getDisplay().length() - 1));
+        }
         System.out.println("Pressed DELETE");
     }
 
