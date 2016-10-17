@@ -1,82 +1,14 @@
 package edu.wit.comp2000.StackCalculator;
 
 import java.nio.charset.Charset;
-import java.util.EmptyStackException;
 import java.util.StringTokenizer;
-enum Operators{
-    OpenParentheses,
-    ClosedParentheses,
-    Exponent,
-    Multiplication,
-    Division,
-    Addition,
-    Subtraction,
-    EOL
-}
 
-class Operation{
-        private int Number1;
-        private Operation Node1;
-        private int Number2;
-        private Operation Node2;
-        private Operators Operator;
-        //region Constructors
-        public Operation(){
-            Number1 = 0;
-            Number2 = 0;
-            Operator = Operators.Addition;
-            Node1 = null;
-            Node2 = null;
-        }
-        //endregion
-        //region get/set accessors & mutators
-        public int getNumber1() {
-            return Number1;
-        }
-
-        public void setNumber1(int number1) {
-            Number1 = number1;
-        }
-
-        public Operation getNode1() {
-            return Node1;
-        }
-
-        public void setNode1(Operation node1) {
-            Node1 = node1;
-        }
-
-        public int getNumber2() {
-            return Number2;
-        }
-
-        public void setNumber2(int number2) {
-            Number2 = number2;
-        }
-
-        public Operation getNode2() {
-            return Node2;
-        }
-
-        public void setNode2(Operation node2) {
-            Node2 = node2;
-        }
-
-        public Operators getOperator() {
-            return Operator;
-        }
-
-        public void setOperator(Operators operator) {
-            Operator = operator;
-        }
-        //endregion
-}
 /**
  * Created by beznosm on 10/12/2016.
  */
 public class InfixCalculator implements Calculator {
-    public final String OPERATIONS = "()-+/*";
-    public final String NUMBERS = "0123456789";
+    private final String OPERATIONS = "()-+/*";
+    private final String NUMBERS = "0123456789";
     @Override
     public int EvaluateExpression(String expression) {
         expression = "("+expression.trim().replace(" ", "") +")";
@@ -161,7 +93,7 @@ public class InfixCalculator implements Calculator {
             strippedexpr = strippedexpr.replace(Character.toString((char)((int)replace)), "").trim();
         }
         if(strippedexpr.length() > 0){
-            throw new IllegalArgumentException("The following characters are illegal:" + strippedexpr);
+            throw new IllegalArgumentException("The following characters are illegal:" + strippedexpr.replaceAll("(.)(?=\\1)", ""));
         }
 
         //minimum number of operations: (numbers - operations = 1)
