@@ -1,4 +1,7 @@
-package edu.wit.comp2000.StackCalculator;
+package edu.wit.comp2000.StackCalculator.Models.Backends;
+
+import edu.wit.comp2000.StackCalculator.Models.Calculator;
+import edu.wit.comp2000.StackCalculator.Models.VectorStack;
 
 import java.nio.charset.Charset;
 import java.util.StringTokenizer;
@@ -51,19 +54,24 @@ public class InfixCalculator implements Calculator {
      * @throws IllegalArgumentException Thrown if the operator doesn't exist
      * @return The result of the subexpression
      */
-    public static int EvaluateSubexpression(byte Operation, int num1, int num2){
-        if(Operation == '-'){
-            return num1-num2;
+    private static int EvaluateSubexpression(byte Operation, int num1, int num2){
+        try{
+            if(Operation == '-'){
+                return num1-num2;
+            }
+            if(Operation == '+') {
+                return num1 + num2;
+            }
+            if(Operation == '/'){
+                return num1/num2;
+            }
+            if(Operation == '*'){
+                return num1*num2;
+            }
+        }catch(ArithmeticException ae){
+            throw new IllegalArgumentException("Divide by zero error");
         }
-        if(Operation == '+') {
-            return num1 + num2;
-        }
-        if(Operation == '/'){
-            return num1/num2;
-        }
-        if(Operation == '*'){
-            return num1*num2;
-        }
+
         throw new IllegalArgumentException("The operation '"+Operation+"' is not supported.");
     }
 
@@ -76,10 +84,11 @@ public class InfixCalculator implements Calculator {
      * @throws NumberFormatException Thrown if the one of the parameters is badly formatted
      * @return The result of the expression
      */
-    public static int EvaluateSubexpression(String Num1, Character Operation, String Num2){
+    private static int EvaluateSubexpression(String Num1, Character Operation, String Num2){
 
         return EvaluateSubexpression(Operation.toString().getBytes()[0], Integer.parseInt(Num1), Integer.parseInt(Num2));
     }
+
     public boolean isValidExpression(String expression){
         expression = expression.trim();
         if (!IsEquationBalanced(expression))
@@ -95,7 +104,6 @@ public class InfixCalculator implements Calculator {
         if(strippedexpr.length() > 0){
             throw new IllegalArgumentException("The following characters are illegal:" + strippedexpr.replaceAll("(.)(?=\\1)", ""));
         }
-
         //minimum number of operations: (numbers - operations = 1)
         return true;
         //check for illegal chars
@@ -105,7 +113,6 @@ public class InfixCalculator implements Calculator {
         expression = expression.replace(" ", "");
         int highestprecedence = 0;
         char searchfor = ' ';
-
         if(expression.contains("*") || expression.contains("/")){
 
             if(expression.contains("/") && (expression.indexOf('/') < expression.indexOf('*') ||

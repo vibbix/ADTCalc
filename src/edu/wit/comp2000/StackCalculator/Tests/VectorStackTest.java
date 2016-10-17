@@ -1,16 +1,11 @@
 package edu.wit.comp2000.StackCalculator.Tests;
 
-import edu.wit.comp2000.StackCalculator.StackInterface;
-import edu.wit.comp2000.StackCalculator.VectorStack;
+import edu.wit.comp2000.StackCalculator.Models.StackInterface;
+import edu.wit.comp2000.StackCalculator.Models.VectorStack;
 import org.junit.Assert;
 import org.junit.Test;
-import sun.invoke.empty.Empty;
 
 import java.util.EmptyStackException;
-import java.util.Stack;
-import java.util.Vector;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by beznosm on 10/13/2016.
