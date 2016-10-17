@@ -1,4 +1,4 @@
-package edu.wit.comp2000.StackCalculator;/**
+package edu.wit.comp2000.StackCalculator.Views;/**
  * Created by dechristophera on 10/13/16.
  */
 
@@ -29,7 +29,7 @@ public class CalcGUI extends Application {
         if(root != null) {
             Scene scene = new Scene(root, 359, 514);
 
-            primaryStage.setTitle("FXML Welcome");
+            primaryStage.setTitle("Calculator");
             primaryStage.setScene(scene);
             primaryStage.show();
         }

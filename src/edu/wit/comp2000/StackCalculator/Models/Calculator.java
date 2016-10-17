@@ -1,4 +1,4 @@
-package edu.wit.comp2000.StackCalculator;
+package edu.wit.comp2000.StackCalculator.Models;
 
 import java.nio.charset.Charset;
 import java.util.EmptyStackException;
@@ -9,10 +9,11 @@ import java.util.EmptyStackException;
 public interface Calculator {
 
     /**
-     * Evaluates an expression and returns it's result
+     * Evaluates an expression and returns its result
      * @param expression The expression to evaluate
      * @return The result of the expression
-     * @throws IllegalArgumentException If the expression is badly formatted
+     * @throws IllegalArgumentException Thrown if the expression is badly formatted
+     * @throws NumberFormatException Thrown if expression returns a non-integer value
      */
     int EvaluateExpression(String expression);
 
